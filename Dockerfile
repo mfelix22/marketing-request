@@ -35,5 +35,5 @@ RUN chown -R www-data:www-data /var/www/html \
 # Install dependencies if you want to run composer install inside the image build
 # RUN composer install --no-interaction --optimize-autoloader
 
-EXPOSE 8000
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+EXPOSE 9000
+CMD ["php-fpm"]

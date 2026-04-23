@@ -4,12 +4,22 @@ services:
       context: .
       dockerfile: Dockerfile
     image: marketing_request_app
-    ports:
-      - "8084:8000"
     volumes:
       - .:/var/www/html
     depends_on:
       - db
+    networks:
+      - marketing-network
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "8084:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
     networks:
       - marketing-network
 
