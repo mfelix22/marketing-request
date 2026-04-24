@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/var/www/html
     depends_on:
       - db
     environment:
@@ -26,11 +24,10 @@ services:
 
   nginx:
     build:
-      context: ./docker/nginx
+      context: .
+      dockerfile: docker/nginx/Dockerfile
     ports:
       - "8084:80"
-    volumes:
-      - .:/var/www/html
     depends_on:
       - app
     networks:
