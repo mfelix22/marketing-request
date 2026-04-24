@@ -26,12 +26,13 @@ services:
       - marketing-network
 
   nginx:
-    image: nginx:stable-alpine
+    build:
+      context: ./docker/nginx
+    image: marketing_request_nginx
     ports:
       - "8084:80"
     volumes:
       - .:/var/www/html
-      - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - app
     networks:
