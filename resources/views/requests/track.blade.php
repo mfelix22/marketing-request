@@ -51,7 +51,7 @@
             $approvalStatusOrder = ['submitted' => 0, 'under_review' => 1, 'approved' => 2, 'rejected' => 2];
             $approvalCurrentIdx = $approvalStatusOrder[$req->status] ?? 0;
         @endphp
-        <div class="bg-white rounded-xl border border-gray-100 shadow-sm mb-5">
+        {{-- <div class="bg-white rounded-xl border border-gray-100 shadow-sm mb-5">
             <div class="px-6 py-4 border-b border-gray-100">
                 <h2 class="text-sm font-semibold text-[#1D3557] uppercase tracking-wide">Approval Progress</h2>
             </div>
@@ -113,7 +113,7 @@
                     </p>
                 @endif
             </div>
-        </div>
+        </div> --}}
         <div class="bg-white rounded-xl border border-gray-100 shadow-sm mb-5">
             <div class="px-6 py-4 border-b border-gray-100">
                 <h2 class="text-sm font-semibold text-[#1D3557] uppercase tracking-wide">Production Progress</h2>
@@ -292,8 +292,7 @@
                 class="bg-green-50 border border-green-200 rounded-xl p-5 mb-5 flex items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>

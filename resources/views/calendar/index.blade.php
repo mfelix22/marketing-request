@@ -146,16 +146,27 @@
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1">Start <span
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Start Date <span
                                     class="text-red-500">*</span></label>
-                            <input type="datetime-local" name="start_datetime" required
-                                x-bind:type="isAllDay ? 'date' : 'datetime-local'" :value="createDate"
+                            <input type="date" name="start_date" required :value="createDate"
                                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#1D3557]/30 focus:border-[#1D3557] outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1">End</label>
-                            <input type="datetime-local" name="end_datetime"
-                                x-bind:type="isAllDay ? 'date' : 'datetime-local'"
+                            <label class="block text-xs font-medium text-gray-700 mb-1">End Date</label>
+                            <input type="date" name="end_date"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#1D3557]/30 focus:border-[#1D3557] outline-none">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3" x-show="!isAllDay">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Start Time <span
+                                    class="text-red-500">*</span></label>
+                            <input type="time" name="start_time" :required="!isAllDay"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#1D3557]/30 focus:border-[#1D3557] outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">End Time</label>
+                            <input type="time" name="end_time"
                                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#1D3557]/30 focus:border-[#1D3557] outline-none">
                         </div>
                     </div>
@@ -231,19 +242,32 @@
                         <span>Created by <span class="font-medium text-gray-600"
                                 x-text="detail.created_by"></span></span>
                     </div>
-                    {{-- Google Calendar button --}}
-                    <a :href="buildGoogleCalendarUrl(detail)" target="_blank" rel="noopener"
-                        class="flex items-center justify-center gap-2 w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="4" width="18" height="18" rx="2" fill="#4285F4"
-                                opacity=".15" />
-                            <path d="M3 9h18" stroke="#4285F4" stroke-width="1.5" />
-                            <path d="M8 2v4M16 2v4" stroke="#4285F4" stroke-width="1.5" stroke-linecap="round" />
-                            <text x="12" y="18" text-anchor="middle" font-size="7" fill="#4285F4"
-                                font-weight="bold">G</text>
-                        </svg>
-                        Add to Google Calendar
-                    </a>
+                    {{-- Add to calendar buttons --}}
+                    <div class="grid grid-cols-2 gap-2">
+                        {{-- Google Calendar --}}
+                        <a :href="buildGoogleCalendarUrl(detail)" target="_blank" rel="noopener"
+                            class="flex items-center justify-center gap-1.5 px-3 py-2.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="4" width="18" height="18" rx="2" fill="#4285F4"
+                                    opacity=".15" />
+                                <path d="M3 9h18" stroke="#4285F4" stroke-width="1.5" />
+                                <path d="M8 2v4M16 2v4" stroke="#4285F4" stroke-width="1.5" stroke-linecap="round" />
+                                <text x="12" y="19" text-anchor="middle" font-size="7" fill="#4285F4"
+                                    font-weight="bold">G</text>
+                            </svg>
+                            Google Calendar
+                        </a>
+                        {{-- Download .ics --}}
+                        <a :href="'/calendar/' + detail.id + '/ical'"
+                            class="flex items-center justify-center gap-1.5 px-3 py-2.5 border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            <svg class="w-4 h-4 flex-shrink-0 text-indigo-500" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Outlook / Apple (.ics)
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -137,18 +137,37 @@
                                                 </label>
                                             </div>
                                             <div>
-                                                <label
-                                                    class="block text-xs font-medium text-gray-700 mb-1">Start</label>
-                                                <input type="datetime-local" name="start_datetime" required
-                                                    value="{{ $event->start_datetime->format('Y-m-d\TH:i') }}"
+                                                <label class="block text-xs font-medium text-gray-700 mb-1">Start
+                                                    Date</label>
+                                                <input type="date" name="start_date" required
+                                                    value="{{ $event->start_datetime->format('Y-m-d') }}"
                                                     class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-[#1D3557]/30">
                                             </div>
+                                            @if (!$event->all_day)
+                                                <div>
+                                                    <label class="block text-xs font-medium text-gray-700 mb-1">Start
+                                                        Time</label>
+                                                    <input type="time" name="start_time"
+                                                        value="{{ $event->start_datetime->format('H:i') }}"
+                                                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-[#1D3557]/30">
+                                                </div>
+                                            @endif
                                             <div>
-                                                <label class="block text-xs font-medium text-gray-700 mb-1">End</label>
-                                                <input type="datetime-local" name="end_datetime"
-                                                    value="{{ $event->end_datetime?->format('Y-m-d\TH:i') }}"
+                                                <label class="block text-xs font-medium text-gray-700 mb-1">End
+                                                    Date</label>
+                                                <input type="date" name="end_date"
+                                                    value="{{ $event->end_datetime?->format('Y-m-d') }}"
                                                     class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-[#1D3557]/30">
                                             </div>
+                                            @if (!$event->all_day)
+                                                <div>
+                                                    <label class="block text-xs font-medium text-gray-700 mb-1">End
+                                                        Time</label>
+                                                    <input type="time" name="end_time"
+                                                        value="{{ $event->end_datetime?->format('H:i') }}"
+                                                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-[#1D3557]/30">
+                                                </div>
+                                            @endif
                                             <div class="col-span-2">
                                                 <label
                                                     class="block text-xs font-medium text-gray-700 mb-1">Description</label>

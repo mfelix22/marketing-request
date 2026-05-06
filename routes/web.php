@@ -88,6 +88,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/calendar/events',                     [CalendarController::class, 'events'])->name('calendar.events');
     Route::post('/calendar',                           [CalendarController::class, 'store'])->name('calendar.store');
     Route::get('/calendar/pending',                    [CalendarController::class, 'pending'])->name('calendar.pending');
+    Route::get('/calendar/{calendarEvent}/ical',       [CalendarController::class, 'ical'])->name('calendar.ical');
     Route::patch('/calendar/{calendarEvent}',          [CalendarController::class, 'update'])->name('calendar.update');
     Route::delete('/calendar/{calendarEvent}',         [CalendarController::class, 'destroy'])->name('calendar.destroy');
 
